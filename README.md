@@ -37,7 +37,40 @@ pi install git:github.com/maltoze/pi-quiet-tool-calls
 pi -e git:github.com/maltoze/pi-quiet-tool-calls
 ```
 
-## Behaviour
+## Modes
+
+| Mode | What you see |
+| --- | --- |
+| `compact` (default) | One line per tool call |
+| `hidden` | Nothing at all for tool calls |
+
+Switch while running:
+
+```text
+/quiet-tools            # report the current mode
+/quiet-tools hidden     # draw nothing for tool calls
+/quiet-tools compact    # one line per call
+```
+
+`/quiet-tools` remembers the choice in `<agent dir>/quiet-tool-calls.json` and reloads pi, so rows that are already on screen redraw with the new mode. Tab completion offers both mode names.
+
+The stored mode applies to every later session. Hand-edit it if you prefer:
+
+```json
+{
+  "mode": "hidden"
+}
+```
+
+For a single run, override it from the command line:
+
+```bash
+pi --quiet-tool-calls-hidden
+```
+
+There is no default keyboard shortcut. Extension shortcuts bind a literal key that users cannot rebind, and `Ctrl+O` is reserved by pi, so `/quiet-tools` is the supported way to switch.
+
+## Behaviour in `compact` mode
 
 | State | What you see |
 | --- | --- |
@@ -48,11 +81,9 @@ pi -e git:github.com/maltoze/pi-quiet-tool-calls
 - Applies to every tool, including MCP tools and tools that register later.
 - The primary argument is the first present of `path`, `file_path`, `command`, `pattern`, `query`, `url`, `name`; it is collapsed to one line and cut at 72 characters. If none of them is present, the first short string argument is used.
 - Expanded output is not trimmed: the result is shown as the tool produced it.
-- Display only. Tool calls and results reach the model unchanged — this changes nothing about what the model sees, what the tools do, or how many tokens a session costs.
+- In `hidden` mode expanding has nothing to expand, and result images still render, because pi draws images outside the renderers.
 
-## Full hide
-
-Set `HIDE_ALL` to `true` in `index.ts` to draw nothing at all for tool calls. Expanding stops working in that mode, and result images still render, because pi draws images outside the renderers.
+Display only. Tool calls and results reach the model unchanged — this changes nothing about what the model sees, what the tools do, or how many tokens a session costs.
 
 ## Development
 
