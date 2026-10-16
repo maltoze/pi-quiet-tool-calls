@@ -31,10 +31,20 @@ Failures stay visible while collapsed:
 ## Install
 
 ```bash
-pi install git:github.com/maltoze/pi-quiet-tool-calls
+pi install npm:pi-quiet-tool-calls
+```
 
-# or try it for one run, without installing
-pi -e git:github.com/maltoze/pi-quiet-tool-calls
+To try it for one run without installing:
+
+```bash
+pi -e npm:pi-quiet-tool-calls
+```
+
+Pin a version, or follow the [repository](https://github.com/maltoze/pi-quiet-tool-calls) instead of a release:
+
+```bash
+pi install npm:pi-quiet-tool-calls@0.2.0
+pi install git:github.com/maltoze/pi-quiet-tool-calls
 ```
 
 ## Modes
