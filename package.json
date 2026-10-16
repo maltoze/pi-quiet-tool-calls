@@ -1,6 +1,6 @@
 {
   "name": "pi-quiet-tool-calls",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Pi extension that collapses every tool call to a single line: one summary per call, click or Ctrl+O to expand.",
   "keywords": [
     "pi-package",
